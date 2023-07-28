@@ -13,7 +13,7 @@
 
 #### 2) Compile
 
-Compile our extension modules:  
+Compile our EMD modules:  
 
     cd emd
     python3 setup.py install
