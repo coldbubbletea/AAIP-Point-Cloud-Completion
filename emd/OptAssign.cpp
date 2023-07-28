@@ -687,6 +687,7 @@ long long COptAssign::getAssignCost(int *assignment, int *assignment_inv, float 
 	std::map<int,std::set<std::pair<int,float>>> mp;
 	vector<edge>::iterator eit;
 	float Assignment[item_size];
+	#pragma omp parallel for
 	for (auto i = 0; i < item_size; i++)
 	{
 		Assignment[i] = 0;
@@ -704,6 +705,7 @@ long long COptAssign::getAssignCost(int *assignment, int *assignment_inv, float 
 			mp[eit->toid-item_size].insert(make_pair(eit->fromid,eit->weight)); //record s_k and dkj
 
 	}
+	#pragma omp parallel for
 	for (auto i = 0; i < item_size; ++i)
 	{
 		
@@ -721,6 +723,8 @@ long long COptAssign::getAssignCost(int *assignment, int *assignment_inv, float 
 		}
 	}
 	auto end = std::chrono::system_clock::now();
+	
+    #pragma omp parallel for
 	for (auto i=0;i<item_size;++i) if(price[i]) sum_non_zero_price++;
 	
 		auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);

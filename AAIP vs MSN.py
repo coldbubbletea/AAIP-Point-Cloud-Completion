@@ -31,15 +31,16 @@ if __name__ == '__main__':
         f_log.write('TIME\nid ------ GIPA_EMD ------ MSN_EMD ------ PCN_EMD\n')
     total_gipa_time, total_msn_time, total_pcn_time = 0, 0, 0
     for name in name_lst: 
-        gt_path = os.path.join('./GT/gt_%d' % (npoints), name.strip() + '.txt')
+        gt_path = os.path.join('./data/GT/gt_%d' % (npoints), name.strip() + '.txt')
         gt = torch.from_numpy(np.loadtxt(gt_path)).cuda().unsqueeze(0) 
         for i in range(8):
             cnt += 1
-            pre_path = os.path.join('./PRE/pre_%d' % (npoints), name.strip() + '_%d.txt' % i)
+            pre_path = os.path.join('./data/PRE/pre_%d' % (npoints), name.strip() + '_%d.txt' % i)
             pre = torch.from_numpy(np.loadtxt(pre_path)).cuda().unsqueeze(0)
             id = tuple([name.strip()])
+            print("Object ID:",end=" ")
             print(id)
-            print(pre.shape, gt.shape)
+           # print(pre.shape, gt.shape)
             GIPA = suction.SiAuction()
             msn_st = time.time()
             dist = GIPA.Auc(pre, gt, 0.005, 50) # Auc-emd
@@ -54,7 +55,7 @@ if __name__ == '__main__':
             sum_auc_time += auc_time
             emd_gipa = torch.sqrt(dist).mean(1).mean().item()
             gipa_time = time.time() - gipa_st
-            print('[EMD/GIPA]: %.8f' % emd_gipa)
+            print('[EMD/AAIP]: %.8f' % emd_gipa)
             # print(emd_msn, emd_gipa)
             # pcn_st = time.time()
             # emd_pcn = emd_loss(pre, gt) # return torch.size([])

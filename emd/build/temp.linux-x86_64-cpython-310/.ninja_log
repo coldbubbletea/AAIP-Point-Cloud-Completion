@@ -53,3 +53,11 @@
 5	13094	1690394548881151787	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/emd.o	30a98f8270ef6cb2
 13	916	1690401772291917406	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/SpatialCCA.o	b33ee3f4d8c779d6
 14	8986	1690401780356021563	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/auction_find_conflict.o	506c083fd9b19f4
+35	1000	1690570753336215531	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/SpatialCCA.o	b33ee3f4d8c779d6
+36	9585	1690570761920299482	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/emd_cuda.o	1bebe84e32f6d0c2
+36	13572	1690570765892338324	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/emd.o	30a98f8270ef6cb2
+8	9204	1690575221517099217	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/auction_find_conflict.o	506c083fd9b19f4
+8	12875	1690575225173142730	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/emd.o	30a98f8270ef6cb2
+12	1296	1690575333074144815	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/OptAssign.o	7cb3b5e7f3abc90b
+11	1279	1690575414134068234	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/OptAssign.o	7cb3b5e7f3abc90b
+13	1274	1690575520886166661	/home/steven/xiubo/AAIP_GITHUB/emd/build/temp.linux-x86_64-cpython-310/OptAssign.o	7cb3b5e7f3abc90b

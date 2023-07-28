@@ -1,20 +1,3 @@
-/***********************************************************************************************
- ***                     S U C T I O N         A L G O R I T H M                             ***
- ***********************************************************************************************
- *                                                                                             *
- *                   Paper Name :                                                              *
- *                                                                                             *
- *                   Authors :  Shunran ZHANG, Xiubo ZHANG                                     *
- *                                                                                             *
- *                   File Name : emd_cuda.cu                                                   *
- *                                                                                             *
- *                   Programmer : Xiubo ZHANG                                                  *
- *                                                                                             *
- *                   Start Date : Mar 3, 2023                                                  *
- *                                                                                             *
- *                   Last Update : April 14, 2023                                              *
- *                                                                                             *
- *---------------------------------------------------------------------------------------------*/
 #include <torch/extension.h>
 #include <vector>
 #include "OptAssign.h"
@@ -56,15 +39,15 @@ void sia_emd(at::Tensor assignment, at::Tensor assignment_inv, at::Tensor price,
 	int *curloop_ptr = (int *)(CURLOOP.data_ptr());
 	int *number_of_conflict_ptr = (int *)(number_of_conflict.data_ptr());
 	auto start = std::chrono::system_clock::now();
-	RTree *da[64];
-	for (auto i = 0; i < 64; i++)
+	RTree *da[batch_size];
+	for (auto i = 0; i < batch_size; i++)
 	{
 
 		da[i] = nullptr;
 	}
 
 	// ofstream timelog("train_sia_timelog.txt", std::ios::app);
-	omp_set_num_threads(64);
+	omp_set_num_threads(batch_size);
 #pragma omp parallel for
 
 	for (auto j = 0; j < batch_size; j++)
