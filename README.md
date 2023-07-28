@@ -5,9 +5,9 @@
 
 #### 1) Envrionment & prerequisites
 
-- Pytorch 1.2.0
-- CUDA 10.0
-- Python 3.7
+- Pytorch 1.12.1
+- CUDA 11.6
+- Python 3.10
 - [Visdom](https://github.com/facebookresearch/visdom)
 - [Open3D](http://www.open3d.org/docs/release/index.html#python-api-index)
 
