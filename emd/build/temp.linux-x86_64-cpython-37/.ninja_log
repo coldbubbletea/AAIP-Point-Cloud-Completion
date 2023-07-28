@@ -1,0 +1,13 @@
+# ninja log v5
+2	137	1688970481223680668	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/rtree/linlist.o	1c452a5c088aafde
+2	169	1688970481255680638	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/rtree/hilbert.o	1185da9883a51a8c
+0	229	1688970481315680580	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/nheap.o	d0376610761b043a
+2	238	1688970481323680572	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/rtree/functions.o	37421baad7788750
+1	304	1688970481391680506	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/rtree/blk_file.o	c7a30554e0235544
+1	377	1688970481463680436	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/OptConstraint.o	927b51be48ae5d07
+2	744	1688970481831680084	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/rtree/rtree.o	f964550095ff2059
+1	750	1688970481835680080	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/OptUpdate.o	7251dc5e0794b3a4
+1	1060	1688970482147679780	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/SpatialCCA.o	6f819ae25c81376c
+0	1195	1688970482279679653	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/OptAssign.o	a89794d3bc4f1cf4
+1	10475	1688970491559670731	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/emd_cuda.o	67d13b8ad3ce3d6
+1	16466	1688970497535664986	/home/hermes/shunran/spi/emd/build/temp.linux-x86_64-cpython-37/emd.o	fd9cf84f6246db50
