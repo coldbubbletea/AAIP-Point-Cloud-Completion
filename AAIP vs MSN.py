@@ -4,7 +4,7 @@ import sys
 import torch
 import time 
 sys.path.append('./emd/')
-import suction
+import algorithms
 # import copy
 # from metrics.metric import l1_cd, l2_cd, emd, f_score
 # from Hungarian import *
@@ -14,7 +14,7 @@ import suction
 if __name__ == '__main__':
     lst_txt = './data/compare.list'
     npoints = 1024
-    time_limit = 10
+    time_limit_microseconds = 20000
     with open(lst_txt, 'r') as f_name:
         name_lst = f_name.readlines()
     
@@ -22,8 +22,8 @@ if __name__ == '__main__':
     sum_iteration = 0 
     sum_auc_time = 0
     cnt = 0
-    log_path = './fortest_%d_%d.txt' % (npoints, time_limit)
-    log_time_path = './100fortest_time_pre_%d_compare_%d_wo_findconflict.txt' % (npoints, time_limit)
+    log_path = './fortest_%d_%d.txt' % (npoints, time_limit_microseconds)
+    log_time_path = './100fortest_time_pre_%d_compare_%d_wo_findconflict.txt' % (npoints, time_limit_microseconds)
     log_aaip_auction_path = './100fortest_time_auc_in_aaip_%d.txt' % npoints
     with open(log_path, 'a') as f_log:
         f_log.write('id ------ GIPA_EMD ------ MSN_EMD ------ PCN_EMD ------ Exact_EMD\n')
@@ -41,20 +41,25 @@ if __name__ == '__main__':
             print("Object ID:",end=" ")
             print(id)
            # print(pre.shape, gt.shape)
-            GIPA = suction.SiAuction()
+            GIPA = algorithms.SiAuction()
+            torch.cuda.synchronize() 
             msn_st = time.time()
             dist = GIPA.Auc(pre, gt, 0.005, 50) # Auc-emd
             emd_msn = torch.sqrt(dist).mean(1).mean().item()
+            torch.cuda.synchronize() 
             msn_time = time.time() - msn_st
             print('[EMD/MSN]: %.8f' % emd_msn)
+            torch.cuda.synchronize() 
             gipa_st = time.time()
-            dist, _, _, auc_iter, auc_time = GIPA.SpAI(pre, gt, id, 0.005, 50, time_limit) # gipa-emd
+            dist, _, _, auc_iter, auc_time = GIPA.SpAI(pre, gt, id, 0.005, 700, time_limit_microseconds) # gipa-emd
+            torch.cuda.synchronize() 
+            gipa_time = time.time() - gipa_st
             with open(log_aaip_auction_path, 'a') as f_auc:
                 f_auc.write('%s %.6f\n' % (name.strip(), auc_time))
             sum_iteration += auc_iter
             sum_auc_time += auc_time
             emd_gipa = torch.sqrt(dist).mean(1).mean().item()
-            gipa_time = time.time() - gipa_st
+            
             print('[EMD/AAIP]: %.8f' % emd_gipa)
             # print(emd_msn, emd_gipa)
             # pcn_st = time.time()
@@ -76,9 +81,9 @@ if __name__ == '__main__':
                report = '%s %.8f %.8f %.8f %.8f\n' % (id_str, emd_gipa, emd_msn, emd_pcn, emd_exact)
                f_log.write(report)     
             with open(log_time_path, 'a') as f_log_time:
-               id_str = name.strip()
-               f_log_time.write(report)  
-               report = '%s %.2f %.2f %.2f\n' % (id_str, gipa_time, msn_time, pcn_time)
+               id_str = name.strip() 
+               report = '%s %.8f %.8f %.8f\n' % (id_str, gipa_time, msn_time, pcn_time)
+               f_log_time.write(report) 
     with open(log_time_path, 'a') as f_log_time:
         f_log_time.write('Avg. time: %.4f %.4f %.4f\n' % (total_gipa_time / cnt, total_msn_time / cnt, total_pcn_time / cnt))
     print(sum_iteration / 960) 

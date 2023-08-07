@@ -124,7 +124,7 @@ int COptAssign::removeFeasibleAssign(int a, int b, int delta)
 	}
 	return removedCost;
 }
-int COptAssign::runSIA(int * curloopsent , int curdijkloop ) {
+int COptAssign::runSIA(int * is_conflict,int * curloopsent , int curdijkloop ) {
 	
 	auto test_s = std::chrono::system_clock::now();
 	int i, j;
@@ -172,7 +172,7 @@ int COptAssign::runSIA(int * curloopsent , int curdijkloop ) {
 	std::map<int,std::set<int>> cflt_mp;
 	int is_InSert[item_size];
 	for(auto i=0;i<noA;++i) is_InSert[i]=0;
-    // for(auto i=0;i<noA;++i) is_InSert[i]=0;
+    //for(auto i=0;i<noA;++i) is_InSert[i]=0;
 	// for(auto i=0;i<noA;++i)
 	// {
 	// 	//cout<<"conflict :"<<is_conflict[i]<<"\n"<<endl;
@@ -209,7 +209,7 @@ int COptAssign::runSIA(int * curloopsent , int curdijkloop ) {
 		{
 			// printf("\nmatching rate>70%\n");
 
-			// cout << "curloop"<< " " << curloop << endl;
+			cout << "curloop"<< " " << current_running_time_milliseconds << endl;
 			*curloopsent=curloop;
 			break;
 		}	
@@ -279,7 +279,7 @@ int COptAssign::runSIA(int * curloopsent , int curdijkloop ) {
 
 		++curloop;
 		auto end = std::chrono::system_clock::now();
-		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+		auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 		current_running_time_milliseconds += static_cast<long long int>(elapsed.count());
 		
 	}
@@ -680,18 +680,14 @@ void COptAssign::removeAssign(int eid, int toid)
 	--eit->flow;
 }
 
-long long COptAssign::getAssignCost(int *assignment, int *assignment_inv, float *price, int qrysize)
+long long COptAssign::IPA(int *assignment, int *assignment_inv, float *price, int qrysize)
 {
-	std::ofstream Init_Price_TM("Init_Price_tm.txt",fstream::app);
 	int sum_non_zero_price=0;
 	std::map<int,std::set<std::pair<int,float>>> mp;
 	vector<edge>::iterator eit;
 	float Assignment[item_size];
 	#pragma omp parallel for
-	for (auto i = 0; i < item_size; i++)
-	{
-		Assignment[i] = 0;
-	}
+	for (auto i = 0; i < item_size; i++) Assignment[i] = 0;
 		
 	long long totalcost = 0;
     auto start = std::chrono::system_clock::now();
@@ -705,7 +701,6 @@ long long COptAssign::getAssignCost(int *assignment, int *assignment_inv, float 
 			mp[eit->toid-item_size].insert(make_pair(eit->fromid,eit->weight)); //record s_k and dkj
 
 	}
-	#pragma omp parallel for
 	for (auto i = 0; i < item_size; ++i)
 	{
 		
@@ -727,9 +722,6 @@ long long COptAssign::getAssignCost(int *assignment, int *assignment_inv, float 
     #pragma omp parallel for
 	for (auto i=0;i<item_size;++i) if(price[i]) sum_non_zero_price++;
 	
-		auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-		Init_Price_TM<<static_cast<long long int>(elapsed.count())<<endl;
-		Init_Price_TM.close();
 	return 0;
 
 	

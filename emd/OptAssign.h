@@ -116,7 +116,7 @@ public:
     ~COptAssign(void);
 
     void initSIA(int runtype, int noA, int noB, int ACap[], int BCap[], int EdgeCap = 1);
-    int runSIA(int *curloopsent = nullptr, int curdijkloop = 0);
+    int runSIA(int * is_conflict=nullptr,int *curloopsent = nullptr, int curdijkloop = 0);
     void SIA_opt1(int fromid, vector<node>::iterator fromit);
 
     // tools
@@ -137,7 +137,7 @@ public:
 
     void insertAssign(int fromid, int toid, int dist, vector<node>::iterator fromit, vector<node>::iterator toit);
     void removeAssign(int eid, int toid);
-    long long getAssignCost(int *assignment, int *assignment_inv, float *price, int qrysize);
+    long long IPA(int *assignment, int *assignment_inv, float *price, int qrysize);
 
     int removeFeasibleAssign(int a, int b, int delta);
     // constraint assignment

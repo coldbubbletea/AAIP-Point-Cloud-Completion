@@ -29,7 +29,6 @@ int cuda_auction_find_conflict(at::Tensor xyz1, at::Tensor xyz2, at::Tensor dist
 							   at::Tensor unass_idx, at::Tensor unass_cnt, at::Tensor unass_cnt_sum, at::Tensor cnt_tmp, at::Tensor max_idx, at::Tensor is_conflict, float eps, int iters);
 void sia_emd(at::Tensor assignment, at::Tensor assignment_inv, at::Tensor price, at::Tensor xyz1, at::Tensor xyz2, at::Tensor batch_is_conflict, int shutdown_time_milliseconds, long long batch_size, long long n, at::Tensor CURLOOP, at::Tensor number_of_conflict)
 {
-
 	int *sia_assignment = (int *)(assignment.data_ptr());
 	int *sia_assignment_inv = (int *)(assignment_inv.data_ptr());
 	float *pre_p = (float *)(xyz1.data_ptr());
@@ -38,7 +37,7 @@ void sia_emd(at::Tensor assignment, at::Tensor assignment_inv, at::Tensor price,
 	int *batch_is_conflict_p = (int *)(batch_is_conflict.data_ptr());
 	int *curloop_ptr = (int *)(CURLOOP.data_ptr());
 	int *number_of_conflict_ptr = (int *)(number_of_conflict.data_ptr());
-	auto start = std::chrono::system_clock::now();
+	
 	RTree *da[batch_size];
 	for (auto i = 0; i < batch_size; i++)
 	{
@@ -46,15 +45,12 @@ void sia_emd(at::Tensor assignment, at::Tensor assignment_inv, at::Tensor price,
 		da[i] = nullptr;
 	}
 
-	// ofstream timelog("train_sia_timelog.txt", std::ios::app);
 	omp_set_num_threads(batch_size);
-#pragma omp parallel for
+    #pragma omp parallel for
 
 	for (auto j = 0; j < batch_size; j++)
 	{
 
-		// if(c!=nullptr) delete c;
-		// if(a!=nullptr) delete a;
 		int *assignment_i = &sia_assignment[j * n];
 		int *assignment_i_inv = &sia_assignment_inv[j * n];
 		char *GT = &gt_p[j * 50];
@@ -99,14 +95,8 @@ void sia_emd(at::Tensor assignment, at::Tensor assignment_inv, at::Tensor price,
 		char assignfile[255];
 		double start_secs;
 
-		// if (strcmp(processtype, "o") == 0)
-		// {
-
 		test.readObj(da[j], GT, objsize);
 		test.readQry(qrysize, objsize, PRE);
-		// cout<<"succes read"<<endl;
-		// cout<<"qurty size: "<<qrysize<<endl;
-		// cout<<"yes"<<endl;
 		int ca = 0, cb = 0;
 
 		for (int i = 0; i < qrysize; i++)
@@ -120,26 +110,13 @@ void sia_emd(at::Tensor assignment, at::Tensor assignment_inv, at::Tensor price,
 		}
 		cb = objsize;
 		start_secs = gettime();
-		// cout<<"enter"<<endl;
 		test.initSIA(SIA, qrysize, objsize, capQ, capP);
-		//	cout<<"enter"<<endl;
 		test.shutdown_time_milliseconds = shutdown_time_milliseconds;
-		// std::pair<int, int> temp_pair;
-		auto test_s = std::chrono::system_clock::now();
-		auto no_usage = test.runSIA(single_curloop);
-		// *single_curloop = temp_pair.first;
-		// *single_conflict = temp_pair.second;
-		double res = IntToFloat(test.getAssignCost(assignment_i, assignment_i_inv, price_i, qrysize));
-		auto test_e = std::chrono::system_clock::now();
-		auto test_epl = std::chrono::duration_cast<std::chrono::milliseconds>(test_e - test_s);
+		auto _ = test.runSIA(is_conflict,single_curloop,0);
+		double res = IntToFloat(test.IPA(assignment_i, assignment_i_inv, price_i, qrysize));
 		delete da[j];
 	}
-	// }
-	// auto end = std::chrono::system_clock::now();
-	// auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	// timelog << "Time = " << static_cast<long long int>(elapsed.count()) << "ms\n";
-	// timelog.close();
-	// cout<<"good finish"<<endl;
+	
 	return;
 }
 
