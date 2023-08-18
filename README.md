@@ -5,7 +5,7 @@
 
 ### Run AAIP compare with emd2.py to see our improvement.
 Average Time Cost: 
-AAIP: 0.7046 emd2: 0.1686 
+AAIP: 0.7046 emd2: 0.1686 //
 Average MSE(small better):
 AAIP_MSE: 373.468 emd2_MSE: 3120.06
 
