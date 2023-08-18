@@ -20,3 +20,7 @@ Compile our EMD modules:
 
     cd emd
     python3 setup.py install
+
+#### 3) Compare AAIP and emd2
+
+    python AAIP compare with emd2.py
