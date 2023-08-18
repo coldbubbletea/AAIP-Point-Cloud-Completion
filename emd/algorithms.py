@@ -75,16 +75,14 @@ class SiAuction():
         #is_conflict = self.find_conflict(xyz1, xyz2)
         batch, m, _ = xyz2.shape
         is_conflict = torch.zeros(batch, m, device='cuda', dtype=torch.int32).contiguous()
-        
         assignment, assignment_inv, price, curloop, conflict_num = self.sia(xyz1.cpu(), xyz2_id.cpu(), m, is_conflict.cpu(), time_limit)
-        print('curloop = %d, m = %d;' % (curloop, m))
-        iters = (1 - (0.8 * curloop / m)) * 500 + 20
-        print('iters = %d' % iters)
+        iters = (1 - (0.8 * curloop / m)) * 500 + 50
         auc_st = time.time()
         dist, _ = self.AucEMD(xyz1, xyz2, assignment.cuda(), assignment_inv.cuda(), price.cuda(), eps, iters)
         return dist, curloop, conflict_num, iters, time.time() - auc_st
     
-    def Auc(self, xyz1, xyz2, eps, iters):
+    def Auc(self, xyz1, xyz2, eps):
+        iters=50
         _, m, _ = xyz2.shape
         bs, n, _ = xyz1.shape
         assert n == m

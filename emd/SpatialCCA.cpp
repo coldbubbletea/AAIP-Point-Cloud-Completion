@@ -106,7 +106,7 @@ void CSpatialCCA::readQry( int qrysize,int  objsize,float* v) {
 
 
 void CSpatialCCA::readObj(RTree* RT,char* objfile, int objsize) {
-    string pre_file_title="data/RTreeData/RTreeData1024/";
+    string pre_file_title="data/RTreeData/RTreeData8192/";
     string file_str(objfile);
     pre_file_title+=file_str;
    

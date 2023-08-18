@@ -189,8 +189,8 @@ int COptAssign::runSIA(int * is_conflict,int * curloopsent , int curdijkloop ) {
 	// 			is_InSert[*j]=1;
 	// 		}
 			
-	// 	}
-	// }
+	//  	}
+	//  }
 	// int conflict_node_size=0;
     // conflict_node_size=free.size();
 	// cout<<"conflict_node_size: "<<conflict_node_size<<endl;
@@ -207,12 +207,10 @@ int COptAssign::runSIA(int * is_conflict,int * curloopsent , int curdijkloop ) {
 		auto start = std::chrono::system_clock::now();
 		if (current_running_time_milliseconds >= shutdown_time_milliseconds)
 		{
-			// printf("\nmatching rate>70%\n");
-
-			cout << "curloop"<< " " << current_running_time_milliseconds << endl;
 			*curloopsent=curloop;
 			break;
 		}	
+		// if(curloop>4000) return *curloopsent=curloop;
 			free.pop();
 
 		nit=nodes.begin()+nid;
@@ -719,11 +717,9 @@ long long COptAssign::IPA(int *assignment, int *assignment_inv, float *price, in
 	}
 	auto end = std::chrono::system_clock::now();
 	
-    #pragma omp parallel for
-	for (auto i=0;i<item_size;++i) if(price[i]) sum_non_zero_price++;
-	
-	return 0;
 
+	return 0;
+    
 	
 }
 
