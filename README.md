@@ -1,7 +1,7 @@
-# Optimized_Shape_Loss_Function_for_Point_Cloud_Completion
+# A Computation-aware Shape Loss Function for Point Cloud Completion
 
 
-### Run AAIP vs MSN to see our improvement of MSE
+### Run AAIP compare with emd2.py to see our improvement.
 
 
 ### Usage
