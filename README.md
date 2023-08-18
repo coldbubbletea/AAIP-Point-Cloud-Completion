@@ -1,7 +1,13 @@
 # A Computation-aware Shape Loss Function for Point Cloud Completion
 
+### Data set for this small demo
+10 different point clouds, repeat 8 times for each.
 
 ### Run AAIP compare with emd2.py to see our improvement.
+Average Time Cost: 
+AAIP: 0.7046 emd2: 0.1686 
+Average MSE(small better):
+AAIP_MSE: 373.468 emd2_MSE: 3120.06
 
 
 ### Usage
@@ -24,3 +30,11 @@ Compile our EMD modules:
 #### 3) Compare AAIP and emd2
 
     python AAIP compare with emd2.py
+
+#### 4) Output log file 
+emd_value_comparison.txt
+time_cost_comparison.txt
+
+#### 5) Calculate MSE
+    g++ -O3 -o comparison_MSE1 cal_MSE.cpp
+    ./comparison_MSE1
