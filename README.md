@@ -49,3 +49,8 @@ time_cost_comparison.txt
 
 #### 6) License
 This project Code is released under the Apache License 2.0 (refer to the LICENSE file for details).
+
+#### 7) Acknowledgments
+Our code is partially based on `MSN-Point-Cloud-Completion` by Liu. 
+We greatly appreciate their outstanding contribution. 
+You can explore their code through the following [link](https://github.com/Colin97/MSN-Point-Cloud-Completion) to appreciate their work.
