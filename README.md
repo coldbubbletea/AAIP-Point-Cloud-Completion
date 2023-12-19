@@ -42,3 +42,6 @@ time_cost_comparison.txt
 #### 5) Calculate MSE
     g++ -O3 -o comparison_MSE1 cal_MSE.cpp
     ./comparison_MSE1
+
+#### 6) License
+This project Code is released under the Apache License 2.0 (refer to the LICENSE file for details).
