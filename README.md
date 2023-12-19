@@ -1,5 +1,9 @@
 # A Computation-aware Shape Loss Function for Point Cloud Completion
 
+This repository is still under development, and we have updated a demo version for everyone to verify its functionality. 
+
+The complete codebase will be updated soon. If you have any questions, please feel free to contact us via email.
+
 ### Data set for this small demo
 10 different point clouds, repeat 8 times for each.
 
