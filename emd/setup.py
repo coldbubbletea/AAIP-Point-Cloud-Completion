@@ -13,7 +13,7 @@ setup(
             'nheap.cpp',
             'OptUpdate.cpp',
             'rtree/rtree.cc',
-            'rtree/hilbert.cc',
+            # 'rtree/hilbert.cc',
             'rtree/blk_file.cc',
             'rtree/functions.cc',
             'rtree/linlist.cc',           
