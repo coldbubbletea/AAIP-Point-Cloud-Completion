@@ -47,6 +47,12 @@ Compile our EMD modules:
     python3 setup.py install
 ```
 
+#### 3) Utilize zigzag order to enhance the locality of the input point cloud.
+The demo point cloud data has already given a good order
+```
+    encodePRE.py
+```
+
 #### 3) Compare AAIP and emd2
 ```
     python AAIP compare with emd2.py
