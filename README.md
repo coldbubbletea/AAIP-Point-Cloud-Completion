@@ -1,4 +1,4 @@
-# A Computation-aware Shape Loss Function for Point Cloud Completion
+# A Computation-aware Shape Loss Function for Point Cloud Completion [[Paper]([https://arxiv.org/abs/2204.08453](https://ojs.aaai.org/index.php/AAAI/article/view/28558))]
 ![Overall](Figure_1.png)
 ## Version 1.1 (Update at 15/01/2025)
 New: We have updated the zigzag order to enhance the locality of the point cloud. 
