@@ -1,8 +1,9 @@
 # A Computation-aware Shape Loss Function for Point Cloud Completion
-This repository is still under development, and we have updated a demo version for everyone to verify its functionality. 
 ![Overall](Figure_1.png)
-## Version 1.1
+## Version 1.1 (Update at 15/01/2025)
 New: We have updated the zigzag order to enhance the locality of the point cloud. 
+
+This repository is still under development, and we have updated a demo version for everyone to verify its functionality.
 
 ### Data set for this small demo
 10 different point clouds, repeat 8 times for each.
@@ -20,6 +21,11 @@ GPU: 4070 Laptop with 12GB shared memory
 **Average Time Cost: AAIP: 0.498 emd2: 0.1686**
 
 **Average MSE(small better): AAIP_MSE: 103.615 emd2_MSE: 3120.06**
+
+### Method 
+![Overall](figure_2.png)
+Two point clouds are regarded as sources and sinks, with the objective of finding an one-to-one mapping of three-dimensional points that satisfy optimization conditions. Finally, the global minimum distance EMD is determined.
+
 
 ### Usage
 
