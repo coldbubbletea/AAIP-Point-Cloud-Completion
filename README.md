@@ -1,5 +1,7 @@
 # A Computation-aware Shape Loss Function for Point Cloud Completion [[Paper](https://ojs.aaai.org/index.php/AAAI/article/view/28558)]
-<img src="Figure_1.png" width="800">
+<p align="center">
+    <img width="600" src="Figure_1.png" alt="Material Bread logo">
+</p>
 ## Version 1.1 (Update at 15/01/2025)
 New: We have updated the zigzag order to enhance the locality of the point cloud. 
 
