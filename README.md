@@ -3,7 +3,6 @@ This repository is still under development, and we have updated a demo version f
 ![Overall](Figure_1.png)
 ## Version 1.1
 New: We have updated the zigzag order to enhance the locality of the point cloud. 
-The complete codebase will be updated soon. If you have any questions, please feel free to contact us via email.
 
 ### Data set for this small demo
 10 different point clouds, repeat 8 times for each.
