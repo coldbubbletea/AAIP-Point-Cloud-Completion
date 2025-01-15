@@ -1,6 +1,6 @@
 # A Computation-aware Shape Loss Function for Point Cloud Completion [[Paper](https://ojs.aaai.org/index.php/AAAI/article/view/28558)]
 <p align="center">
-    <img width="600" src="Figure_1.png" alt="Material Bread logo">
+    <img width="600" src="Figure_1.png" alt="Overall Structure">
 </p>
 ## Version 1.1 (Update at 15/01/2025)
 New: We have updated the zigzag order to enhance the locality of the point cloud. 
@@ -25,7 +25,9 @@ GPU: 4070 Laptop with 12GB shared memory
 **Average MSE(small better): AAIP_MSE: 103.615 emd2_MSE: 3120.06**
 
 ### Method 
-<img src="figure_2.png" width="800">
+<p align="center">
+    <img width="600" src="figure_2.png" alt="Method">
+</p>
 Two point clouds are regarded as sources and sinks, with the objective of finding an one-to-one mapping of three-dimensional points that satisfy optimization conditions. Finally, the global minimum distance EMD is determined.
 
 
