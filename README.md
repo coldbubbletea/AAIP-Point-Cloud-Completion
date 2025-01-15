@@ -1,19 +1,25 @@
 # A Computation-aware Shape Loss Function for Point Cloud Completion
 This repository is still under development, and we have updated a demo version for everyone to verify its functionality. 
 
+## Version 1.1
+New: We have updated the zigzag order to enhance the locality of the point cloud. 
 The complete codebase will be updated soon. If you have any questions, please feel free to contact us via email.
 
 ### Data set for this small demo
 10 different point clouds, repeat 8 times for each.
 
 ### Run AAIP compare with emd2.py to see our improvement.
-Average Time Cost: 
+**Experimental Environment:**  
 
-AAIP: 0.7046 emd2: 0.1686 
+AMD Ryzen 7 7435HS with 16 threads 
 
-Average MSE(small better):
+L1 Cache：512KB L2 Cache:4.0MB L3 Cache: 16MB
 
-AAIP_MSE: 373.468 emd2_MSE: 3120.06
+GPU: 4070 Laptop with 12GB shared memory
+
+
+**Average Time Cost: AAIP: 0.498 emd2: 0.1686**
+**Average MSE(small better): AAIP_MSE: 103.615 emd2_MSE: 3120.06**
 
 ### Usage
 
